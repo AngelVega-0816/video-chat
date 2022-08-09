@@ -25,7 +25,7 @@ app.use(cors())
 // });
 
 app.get("/demo", (req, res) => {
-  res.send("demo")
+  res.send("hoola")
 })
 
 io.on("connection", (socket) => {
