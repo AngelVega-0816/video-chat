@@ -4,7 +4,7 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io("http://localhost:3001");
+const socket = io(process.env.VERCEL_URL || "http://localhost:3001/");
 
 const ContextProvider = ({ children }) => {
 	const [stream, setStream] = useState(null);
