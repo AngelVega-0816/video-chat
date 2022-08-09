@@ -12,6 +12,10 @@ const io = require("socket.io")(server, {
 
 app.use(cors())
 
+app.get("/", (req, res) => {
+  res.send("hi")
+})
+
 io.on("connection", (socket) => {
   socket.emit("me", socket.id)
 
