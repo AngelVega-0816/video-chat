@@ -4,7 +4,7 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io("https://video-chat--webrtc.vercel.app/");
+const socket = io("https://webrtcvideo-chat.herokuapp.com/");
 
 const ContextProvider = ({ children }) => {
 	const [stream, setStream] = useState(null);
