@@ -4,7 +4,7 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io("https://webrtcvideo-chat.herokuapp.com/", {
+const socket = io("https://webrtcvideo-chat.herokuapp.com", {
   withCredentials: true,
 });
 
