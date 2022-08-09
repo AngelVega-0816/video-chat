@@ -5,7 +5,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3001
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://video-chat--webrtc.vercel.app/",
+    origin: "https://video-chat--webrtc.vercel.app",
     // origin: "*",
     methods: ["GET", "POST"]
   }
