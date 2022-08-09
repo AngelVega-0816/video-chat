@@ -5,12 +5,23 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3001
 const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin: "https://video-chat--webrtc.vercel.app/",
     methods: ["GET", "POST"]
   }
 });
 
 app.use(cors())
+
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "https://video-chat--webrtc.vercel.app");
+	res.header("Access-Control-Allow-Credentials", "true");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	res.header("Access-Control-Allow-Methods", "GET, POST");
+	next();
+});
 
 app.get("/", (req, res) => {
   res.send("hi")
