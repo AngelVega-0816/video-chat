@@ -20,7 +20,8 @@
 // 	res.header("Access-Control-Allow-Methods", "GET, POST");
 // 	next();
 // });
-const app = require("express")();
+const express = require("express");
+const app = express()
 const server = require("http").createServer(app);
 const cors = require("cors");
 
@@ -54,5 +55,12 @@ io.on("connection", (socket) => {
 		io.to(data.to).emit("callAccepted", data.signal)
 	});
 });
+
+if(process.env.PROD) {
+  app.use(express.static(path.join(__dirname, "./client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, './client/build/index.html'))
+  })
+}
 
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
