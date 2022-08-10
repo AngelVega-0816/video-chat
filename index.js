@@ -20,14 +20,13 @@
 // 	res.header("Access-Control-Allow-Methods", "GET, POST");
 // 	next();
 // });
-const express = require("express");
-const app = express()
+const app = require("express")();
 const server = require("http").createServer(app);
 const cors = require("cors");
 
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "https://video-chat--webrtc.vercel.app",
+		origin: "*",
 		methods: [ "GET", "POST" ]
 	}
 });
@@ -36,9 +35,9 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
-// app.get('/', (req, res) => {
-// 	res.send('Running');
-// });
+app.get('/', (req, res) => {
+	res.send('Running');
+});
 
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id);
@@ -55,12 +54,5 @@ io.on("connection", (socket) => {
 		io.to(data.to).emit("callAccepted", data.signal)
 	});
 });
-
-if(process.env.PROD) {
-  app.use(express.static(path.join(__dirname, "./client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, './client/build/index.html'))
-  })
-}
 
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
