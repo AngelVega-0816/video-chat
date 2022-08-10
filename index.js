@@ -27,7 +27,7 @@ const cors = require("cors");
 
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "*",
+		origin: "https://video-chat--webrtc.vercel.app",
 		methods: [ "GET", "POST" ]
 	}
 });
